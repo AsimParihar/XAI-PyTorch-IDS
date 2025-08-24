@@ -37,6 +37,7 @@ def load_selected_csvs(data_dir, selected_files):
     print(f"Total samples loaded: {len(df)}")
     print("Class distribution:\n", df['ALERT'].value_counts())
     return df
+from sklearn.impute import SimpleImputer
 
 def preprocess_dataset(df):
     drop_cols = ["FLOW_ID", "PROTOCOL_MAP", "IPV4_SRC_ADDR", "IPV4_DST_ADDR", "ANALYSIS_TIMESTAMP"]
@@ -63,6 +64,7 @@ def preprocess_dataset(df):
     print(f"After SMOTE, class distribution: {np.bincount(y_res)}")
 
     return X_res, y_res, label_encoder, feature_names
+
 
 # ---------------- SHAP ----------------
 def shap_analysis(model, X_test, feature_names, output_folder):
